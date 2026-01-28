@@ -5,21 +5,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b0b0c" />
   <meta name="description" content="The Mutiny Report with Fletcher Christian — gonzo news from the cracks in the empire. Truth, teeth, and a microphone." />
-<!-- Open Graph / Social Share -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Mutiny Report with Fletcher Christian">
-<meta property="og:description" content="Gonzo news and reporting from the cracks in the empire. No gods. No masters. Just truth, teeth, and a microphone.">
-<meta property="og:url" content="https://mutinyreport.com">
-<meta property="og:image" content="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Mutiny Report with Fletcher Christian">
-<meta name="twitter:description" content="Not polite news. Not safe for power. Gonzo reporting from the cracks in the empire.">
-<meta name="twitter:image" content="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png">
   <title>The Mutiny Report with Fletcher Christian</title>
+
+  <!-- Open Graph / Social Share -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Mutiny Report with Fletcher Christian">
+  <meta property="og:description" content="Not polite news. Not safe for power. Gonzo reporting from the cracks in the empire.">
+  <!-- change this to your final domain when live -->
+  <meta property="og:url" content="https://mutinyreport.com">
+  <meta property="og:image" content="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Mutiny Report with Fletcher Christian">
+  <meta name="twitter:description" content="Not polite news. Not safe for power. Gonzo reporting from the cracks in the empire.">
+  <meta name="twitter:image" content="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png">
 
   <style>
     :root{
@@ -59,7 +62,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: clamp(18px, 3vw, 40px);
+      padding: 18px;
     }
 
     .card{
@@ -81,30 +84,22 @@
       opacity:.9;
     }
 
+    /* Mobile-first header: centered stack */
     header{
       position:relative;
-      padding: clamp(18px, 3vw, 34px);
+      padding: 18px 18px 14px;
       border-bottom: 1px solid var(--line);
       display:flex;
-      gap: 18px;
+      flex-direction:column;
       align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-
-    /* Logo container */
-    .brand{
-      display:flex;
-      align-items:center;
-      min-width: 240px;
+      gap: 14px;
     }
 
     .logo-wrap{
-      width: clamp(180px, 32vw, 380px);
+      width: min(360px, 88vw);
       position: relative;
     }
 
-    /* Static image */
     .logo-img{
       width: 100%;
       height: auto;
@@ -112,7 +107,6 @@
       filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));
     }
 
-    /* Animated video sits exactly on top while playing */
     .logo-video{
       position:absolute;
       inset:0;
@@ -126,19 +120,23 @@
 
     .hidden{ display:none !important; }
 
+    /* Buttons: full width on mobile */
     .actions{
+      width: 100%;
       display:flex;
-      gap:10px;
-      align-items:center;
+      gap: 10px;
+      flex-direction:column;
     }
 
     .btn{
+      width:100%;
+      justify-content:center;
       border: 1px solid var(--line);
       background: rgba(0,0,0,.35);
       color: var(--text);
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-radius: 999px;
-      font-weight: 650;
+      font-weight: 700;
       letter-spacing: .2px;
       transition: transform .08s ease, background .18s ease, border-color .18s ease;
       display:inline-flex;
@@ -150,78 +148,67 @@
 
     main{
       position:relative;
-      padding: clamp(18px, 3vw, 34px);
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: clamp(18px, 3vw, 26px);
-    }
-
-    @media (max-width: 860px){
-      main{ grid-template-columns: 1fr; }
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 18px;
     }
 
     .title{
-      margin: 6px 0 10px;
-      font-size: clamp(26px, 3.2vw, 44px);
-      line-height:1.15;
+      margin: 2px 0 8px;
+      font-size: clamp(22px, 6.6vw, 42px);
+      line-height:1.12;
       letter-spacing: -0.6px;
     }
 
     .subtitle{
-      margin: 0 0 18px;
+      margin: 0 0 12px;
       color: var(--muted);
-      font-size: clamp(14px, 1.6vw, 16px);
-      max-width: 62ch;
+      font-size: 15px;
+      max-width: 65ch;
     }
 
     .copy{
       margin:0;
-      color: var(--text);
       font-size: 16px;
-      max-width: 72ch;
       white-space: pre-line;
     }
 
-    .side{
+    .topics{
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(0,0,0,.30);
-      padding: 18px;
+      padding: 16px;
     }
 
-    .side h2{
+    .topics h2{
       margin:0 0 10px;
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing:.12em;
       text-transform:uppercase;
       color: var(--muted);
     }
 
-    .side p{
-      margin:0 0 14px;
-      color: var(--text);
-    }
-
-    .stack{
+    .chips{
       display:flex;
-      flex-direction:column;
+      flex-wrap:wrap;
       gap:10px;
-      margin-top:10px;
     }
 
-    .pill{
+    .chip{
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 10px 12px;
       background: rgba(255,255,255,.04);
       color: var(--text);
-      font-weight: 600;
-      text-align:center;
+      font-weight: 650;
+      font-size: 14px;
+      white-space: nowrap;
     }
 
     footer{
       position:relative;
-      padding: 16px clamp(18px, 3vw, 34px);
+      padding: 14px 18px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       display:flex;
@@ -232,6 +219,34 @@
     }
 
     .muted-link{ color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Desktop enhancement: restore side-by-side buttons + tighter header */
+    @media (min-width: 860px){
+      .wrap{ padding: 34px; }
+
+      header{
+        padding: 26px 34px;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap: 18px;
+      }
+
+      .actions{
+        width:auto;
+        flex-direction:row;
+      }
+
+      .btn{ width:auto; padding: 10px 14px; }
+
+      main{
+        padding: 26px 34px;
+      }
+
+      .topics{
+        padding: 18px;
+      }
+    }
   </style>
 </head>
 
@@ -239,30 +254,25 @@
   <div class="wrap">
     <div class="card">
       <header>
-        <div class="brand" aria-label="The Mutiny Report brand">
-          <div class="logo-wrap" aria-label="Mutiny Report logo">
-            <!-- Static logo always exists underneath -->
-            <img
-              id="logoStatic"
-              class="logo-img"
-              src="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png"
-              alt="The Mutiny Report with Fletcher Christian logo"
-              loading="eager"
-              decoding="async"
-            />
-
-            <!-- Animated logo sits on top and disappears after play -->
-            <video
-              id="logoAnim"
-              class="logo-video"
-              autoplay
-              muted
-              playsinline
-              preload="auto"
-            >
-              <source src="https://bafybeiakmvces76ueoflcg2tcvukk4y6ao2eru4zp2hazjejojiq2vq37a.ipfs.dweb.link?filename=mutinyreportanimated.mp4" type="video/mp4" />
-            </video>
-          </div>
+        <div class="logo-wrap" aria-label="Mutiny Report logo">
+          <img
+            id="logoStatic"
+            class="logo-img"
+            src="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png"
+            alt="The Mutiny Report with Fletcher Christian logo"
+            loading="eager"
+            decoding="async"
+          />
+          <video
+            id="logoAnim"
+            class="logo-video"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+          >
+            <source src="https://bafybeiakmvces76ueoflcg2tcvukk4y6ao2eru4zp2hazjejojiq2vq37a.ipfs.dweb.link?filename=mutinyreportanimated.mp4" type="video/mp4" />
+          </video>
         </div>
 
         <nav class="actions" aria-label="Primary actions">
@@ -297,20 +307,16 @@ Subscribe. Stay dangerous. Think for yourself.
           </p>
         </section>
 
-        <aside class="side">
-          <h2>What to expect</h2>
-          <p>
-            Short, sharp dispatches. Big themes. No filler. When the world lies quietly, We yell it loudly.
-          </p>
-
-          <div class="stack">
-            <div class="pill">Geopolitics</div>
-            <div class="pill">Media propaganda</div>
-            <div class="pill">War culture</div>
-            <div class="pill">Religion & power</div>
-            <div class="pill">Manufactured consent</div>
+        <section class="topics" aria-label="Topics">
+          <h2>Topics</h2>
+          <div class="chips">
+            <div class="chip">Geopolitics</div>
+            <div class="chip">Media propaganda</div>
+            <div class="chip">War culture</div>
+            <div class="chip">Religion & power</div>
+            <div class="chip">Manufactured consent</div>
           </div>
-        </aside>
+        </section>
       </main>
 
       <footer>
@@ -323,40 +329,26 @@ Subscribe. Stay dangerous. Think for yourself.
   </div>
 
   <script>
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Logo swap logic
     const logoAnim = document.getElementById("logoAnim");
 
     const hideAnimShowStatic = () => {
       if (!logoAnim) return;
-      // Hide animated layer
       logoAnim.classList.add("hidden");
-      // Stop downloading/playing further
       try { logoAnim.pause(); } catch(e) {}
       try { logoAnim.removeAttribute("src"); } catch(e) {}
       try { logoAnim.load(); } catch(e) {}
     };
 
-    // If video ends, swap to static
     logoAnim.addEventListener("ended", hideAnimShowStatic);
-
-    // If it errors, swap to static
     logoAnim.addEventListener("error", hideAnimShowStatic);
 
-    // If autoplay is blocked, play() will reject — swap to static immediately
     Promise.resolve().then(async () => {
-      try {
-        // Some browsers need an explicit call even with autoplay attribute
-        await logoAnim.play();
-      } catch (e) {
-        hideAnimShowStatic();
-      }
+      try { await logoAnim.play(); }
+      catch (e) { hideAnimShowStatic(); }
     });
 
-    // Fallback: if it hasn't ended within 5 seconds, swap anyway
-    // (prevents weird hangs if "ended" doesn't fire)
     setTimeout(hideAnimShowStatic, 5000);
   </script>
 </body>
