@@ -2,34 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="The Mutiny Report with Fletcher Christian — gonzo geopolitical reporting from the cracks in the empire." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The Mutiny Report with Fletcher Christian — gonzo geopolitical reporting with no corporate leash." />
   <title>The Mutiny Report with Fletcher Christian</title>
 
   <style>
     :root{
-      --bg: #0b0f14;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
+      --bg: #000000;
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.70);
-      --line: rgba(255,255,255,.12);
-      --accent: #ff3b30; /* Mutiny red */
-      --accent2: #f5c542; /* warm gold */
+      --line: rgba(255,255,255,.14);
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --accent: #ff3b30;
       --max: 1120px;
       --radius: 18px;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    html, body { height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
       color: var(--text);
-      background: radial-gradient(900px 600px at 20% -10%, rgba(255,59,48,.22), transparent 60%),
-                  radial-gradient(700px 520px at 90% 10%, rgba(245,197,66,.18), transparent 55%),
-                  radial-gradient(900px 650px at 40% 120%, rgba(70,130,180,.16), transparent 60%),
-                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       overflow-x:hidden;
     }
 
@@ -38,42 +34,49 @@
 
     /* Header */
     header{
-      position:sticky; top:0; z-index:50;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(0,0,0,.92);
       border-bottom: 1px solid var(--line);
-      background: rgba(11,15,20,.62);
-      -webkit-backdrop-filter: blur(14px);
-      backdrop-filter: blur(14px);
-    }
-
-    /* Fallback: if backdrop-filter isn't supported, keep it readable */
-    @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-      header{ background: rgba(11,15,20,.92); }
     }
 
     .topbar{
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
       padding: 14px 0;
-      gap: 18px;
     }
+
     .brand{
-      display:flex; align-items:center; gap: 14px;
+      display:flex;
+      align-items:center;
+      gap: 14px;
       min-width: 260px;
     }
+
     .brand img{
-      height: 56px; width:auto;
+      height: 54px;
+      width: auto;
       display:block;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,.45));
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.6));
     }
 
     nav{
-      display:flex; gap: 14px; flex-wrap:wrap; justify-content:flex-end;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
       align-items:center;
     }
+
     .navlink{
       padding:10px 12px;
       border-radius: 999px;
       color: var(--muted);
       border: 1px solid transparent;
+      background: transparent;
     }
     .navlink:hover{
       color: var(--text);
@@ -82,73 +85,56 @@
     }
 
     .cta{
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,59,48,.35);
-      background: linear-gradient(180deg, rgba(255,59,48,.20), rgba(255,59,48,.10));
-      color: var(--text);
-      box-shadow: 0 12px 26px rgba(255,59,48,.08);
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      transition: transform .15s ease;
+      padding:10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,59,48,.55);
+      background: rgba(255,59,48,.12);
+      color: var(--text);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
     }
     .cta:hover{
-      border-color: rgba(255,59,48,.60);
       transform: translateY(-1px);
+      border-color: rgba(255,59,48,.80);
+      background: rgba(255,59,48,.16);
     }
 
     /* Hero */
-    .hero{ padding: 54px 0 26px; }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.35fr .65fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+    .hero{ padding: 54px 0 18px; }
+    .heroCard{
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      box-shadow: 0 28px 60px rgba(0,0,0,.35);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: 0 26px 60px rgba(0,0,0,.55);
+      padding: 26px;
     }
-    .heroMain{
-      padding: 28px;
-      position:relative;
-      overflow:hidden;
-    }
-    .heroMain::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(500px 260px at 20% 10%, rgba(255,59,48,.22), transparent 60%),
-                  radial-gradient(520px 300px at 90% 0%, rgba(245,197,66,.16), transparent 55%);
-      opacity:.8;
-      pointer-events:none;
-    }
-    .heroMain > *{ position:relative; }
 
     h1{
       margin: 0 0 10px;
-      font-size: clamp(28px, 3.5vw, 44px);
+      font-size: clamp(28px, 3.3vw, 44px);
       letter-spacing: -0.02em;
       line-height: 1.08;
     }
-    .accent2{ color: var(--accent2); font-weight:700; }
 
     .sub{
       margin: 0 0 14px;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.6;
-      max-width: 70ch;
+      line-height: 1.7;
+      max-width: 80ch;
     }
 
     .pillRow{
-      display:flex; gap:10px; flex-wrap:wrap; margin: 12px 0 18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 14px 0 18px;
     }
     .pill{
       font-size: 12px;
-      color: rgba(255,255,255,.78);
+      color: rgba(255,255,255,.82);
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid var(--line);
@@ -156,11 +142,16 @@
     }
 
     .btnRow{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-top: 14px;
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-top: 10px;
     }
+
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding: 12px 14px;
       border-radius: 12px;
       border: 1px solid var(--line);
@@ -168,32 +159,18 @@
       color: var(--text);
     }
     .btn:hover{ background: rgba(255,255,255,.07); }
-    .btnPrimary{
-      border-color: rgba(255,59,48,.45);
-      background: linear-gradient(180deg, rgba(255,59,48,.24), rgba(255,59,48,.12));
-    }
-    .btnPrimary:hover{ border-color: rgba(255,59,48,.70); }
 
-    .sideCard{
-      padding: 18px;
-      display:flex; flex-direction:column; gap: 12px;
+    .btnPrimary{
+      border-color: rgba(255,59,48,.55);
+      background: rgba(255,59,48,.12);
     }
-    .sideTitle{
-      font-weight: 650;
-      letter-spacing: .01em;
-      margin:0;
+    .btnPrimary:hover{
+      border-color: rgba(255,59,48,.80);
+      background: rgba(255,59,48,.16);
     }
-    .sideText{
-      margin:0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-    .sideStrong{ color: var(--text); font-weight:700; }
-    .tinyLine{ height:1px; background: var(--line); width:100%; }
 
     /* Sections */
-    section{ padding: 26px 0; }
+    section{ padding: 24px 0; }
     .sectionTitle{
       margin: 0 0 10px;
       font-size: 18px;
@@ -202,144 +179,83 @@
     .sectionLead{
       margin: 0 0 16px;
       color: var(--muted);
-      line-height: 1.6;
-      max-width: 78ch;
+      line-height: 1.7;
+      max-width: 85ch;
       font-size: 14.5px;
     }
 
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .tile{ padding: 18px; }
-
-    /* Embed placeholder */
-    .embedWrap{
-      margin-top:18px;
-      border-top:1px solid var(--line);
-      padding-top:16px;
-    }
-    .embedNote{
-      color: var(--muted);
-      font-size:13px;
-      margin-bottom:10px;
-    }
-    .embedBox{
-      border-radius:14px;
-      border:1px dashed rgba(255,255,255,.16);
-      background:rgba(0,0,0,.18);
-      padding:14px;
-    }
-    .embedBoxText{
-      color:rgba(255,255,255,.60);
-      font-size:13px;
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+      padding: 18px;
     }
 
-    /* Episode list */
-    .episode{
+    /* Manifesto block */
+    .manifesto p{
+      margin: 0;
+      line-height: 1.75;
+      font-size: 15px;
+    }
+    .manifesto p + p{ margin-top: 12px; }
+    .manifestoStrong{
+      font-weight: 750;
+      letter-spacing: .01em;
+    }
+    .manifestoAccent{
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* Subscribe form */
+    form{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
     }
-    .episode + .episode{ margin-top: 10px; }
-    .episode h3{
-      margin:0 0 4px;
-      font-size: 14.5px;
-    }
-    .episode p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-    .play{
-      white-space:nowrap;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(245,197,66,.35);
-      background: rgba(245,197,66,.10);
-    }
-    .play:hover{ border-color: rgba(245,197,66,.60); }
-
-    /* Subscribe */
-    .badges{ display:flex; gap: 10px; flex-wrap:wrap; }
-    .badge{
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .badge:hover{ color: var(--text); background: rgba(255,255,255,.06); }
-
-    /* Newsletter */
-    form{ display:flex; gap: 10px; flex-wrap:wrap; margin-top: 12px; }
     input[type="email"]{
-      flex: 1 1 240px;
+      flex: 1 1 260px;
       padding: 12px 12px;
       border-radius: 12px;
       border: 1px solid var(--line);
-      background: rgba(0,0,0,.25);
+      background: rgba(0,0,0,.55);
       color: var(--text);
       outline:none;
     }
     input[type="email"]::placeholder{ color: rgba(255,255,255,.45); }
+
     .submit{
       padding: 12px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(255,59,48,.45);
-      background: linear-gradient(180deg, rgba(255,59,48,.24), rgba(255,59,48,.12));
+      border: 1px solid rgba(255,59,48,.55);
+      background: rgba(255,59,48,.12);
       color: var(--text);
       cursor:pointer;
     }
-    .submit:hover{ border-color: rgba(255,59,48,.70); }
+    .submit:hover{
+      border-color: rgba(255,59,48,.80);
+      background: rgba(255,59,48,.16);
+    }
 
-    /* About manifesto block */
-    .manifesto{
-      margin:0;
-      line-height:1.7;
-      color: var(--text);
-    }
-    .manifestoMuted{
-      color: var(--muted);
-    }
-    .manifestoBig{
-      margin-top:18px;
-      font-weight:700;
-      letter-spacing:.02em;
-    }
-    .manifestoGold{
-      margin-top:18px;
-      color: var(--accent2);
-      font-weight:650;
-    }
-    .contactMail{ color: var(--accent2); }
-
+    /* Footer */
     footer{
-      padding: 26px 0 40px;
+      padding: 24px 0 40px;
+      border-top: 1px solid var(--line);
       color: rgba(255,255,255,.55);
       font-size: 13px;
-      border-top: 1px solid var(--line);
-      margin-top: 26px;
+      margin-top: 20px;
     }
 
     @media (max-width: 860px){
-      .heroGrid{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
       .brand img{ height: 48px; }
     }
     @media (max-width: 520px){
+      .topbar{ padding: 12px 0; }
       nav{ gap: 8px; }
       .navlink{ padding: 8px 10px; }
-      .topbar{ padding: 12px 0; }
-      .heroMain{ padding: 20px; }
+      .heroCard{ padding: 20px; }
     }
   </style>
 </head>
@@ -349,16 +265,16 @@
     <div class="container">
       <div class="topbar">
         <div class="brand">
-          <!-- Put your transparent logo here: assets/mutiny-logo.png -->
+          <!-- Put the transparent logo here -->
           <img src="assets/mutiny-logo.png" alt="The Mutiny Report with Fletcher Christian" />
         </div>
 
         <nav aria-label="Primary">
           <a class="navlink" href="#about">About</a>
-          <a class="navlink" href="#episodes">Episodes</a>
+          <a class="navlink" href="#listen">Listen</a>
           <a class="navlink" href="#subscribe">Subscribe</a>
           <a class="navlink" href="#contact">Contact</a>
-          <a class="cta" href="#listen">Listen</a>
+          <a class="cta" href="#subscribe">Join</a>
         </nav>
       </div>
     </div>
@@ -366,146 +282,84 @@
 
   <main>
     <div class="container">
+
       <section class="hero" id="listen">
-        <div class="heroGrid">
-          <div class="card heroMain">
-            <h1>The Mutiny Report <span class="accent2">with Fletcher Christian</span></h1>
+        <div class="heroCard">
+          <h1>The Mutiny Report with Fletcher Christian</h1>
 
-            <p class="sub">
-              <strong>The Mutiny Report with Fletcher Christian</strong> is not polite news.
-              It’s not sponsored outrage.
-              It’s not safe for power.
-            </p>
+          <p class="sub">
+            The Mutiny Report with Fletcher Christian is not polite news.
+            It’s not sponsored outrage.
+            It’s not safe for power.
+          </p>
 
-            <p class="sub">
-              This is gonzo news and reporting from the cracks in the empire. Real headlines. Real consequences.
-              No corporate leash. No party script. Just a boots-on-the-ground mind ripping into geopolitics,
-              media propaganda, war culture, religion, and the slow normalization of bullshit.
-            </p>
+          <p class="sub">
+            This is gonzo news and reporting from the cracks in the empire. Real headlines. Real consequences. No corporate leash.
+            No party script. Just a boots-on-the-ground mind ripping into geopolitics, media propaganda, war culture, religion,
+            and the slow normalization of bullshit.
+          </p>
 
-            <div class="pillRow" aria-label="Show themes">
-              <span class="pill">Geopolitics</span>
-              <span class="pill">Media Propaganda</span>
-              <span class="pill">War Culture</span>
-              <span class="pill">Religion</span>
-              <span class="pill">Power</span>
-            </div>
-
-            <div class="btnRow">
-              <!-- Replace hrefs with your real links -->
-              <a class="btn btnPrimary" href="#" aria-label="Listen on Spotify">Listen on Spotify</a>
-              <a class="btn" href="#" aria-label="Listen on Apple Podcasts">Apple Podcasts</a>
-              <a class="btn" href="#" aria-label="Watch on YouTube">YouTube</a>
-            </div>
-
-            <div class="embedWrap">
-              <div class="embedNote">
-                Embed your latest episode here (Spotify/Apple/YouTube iframe).
-              </div>
-              <div class="card embedBox">
-                <div class="embedBoxText">
-                  Paste your embed code inside this box.
-                </div>
-              </div>
-            </div>
+          <div class="pillRow" aria-label="Show themes">
+            <span class="pill">Geopolitics</span>
+            <span class="pill">Media Propaganda</span>
+            <span class="pill">War Culture</span>
+            <span class="pill">Religion</span>
+            <span class="pill">Power</span>
           </div>
 
-          <aside class="card sideCard">
-            <p class="sideTitle">Latest drop</p>
-            <p class="sideText">
-              <span class="sideStrong">Episode Title (placeholder)</span><br/>
-              Real headlines. Real consequences. No corporate leash.
-            </p>
-            <div class="tinyLine"></div>
-            <p class="sideText">
-              <span class="accent2">Format:</span> 30–60 min, geopolitics + truth with teeth.
-            </p>
-            <div class="tinyLine"></div>
-            <a class="btn btnPrimary" href="#episodes">Browse episodes</a>
-          </aside>
+          <div class="btnRow">
+            <!-- Replace hrefs when ready -->
+            <a class="btn btnPrimary" href="#" aria-label="Listen on Spotify">Spotify</a>
+            <a class="btn" href="#" aria-label="Listen on Apple Podcasts">Apple Podcasts</a>
+            <a class="btn" href="#" aria-label="Watch on YouTube">YouTube</a>
+            <a class="btn" href="#" aria-label="RSS feed">RSS</a>
+          </div>
         </div>
       </section>
 
       <section id="about">
         <h2 class="sectionTitle">About the Mutiny</h2>
 
-        <p class="sectionLead">
-          I don’t pretend to be neutral when people are dying, lying, or getting erased. I read the news so you don’t have to
-          swallow it raw. I connect dots they’d rather keep scattered. I call out hypocrisy wherever it hides.
-        </p>
+        <div class="card manifesto">
+          <p class="manifestoStrong">The Mutiny Report with Fletcher Christian is not polite news.</p>
+          <p class="manifestoStrong">It’s not sponsored outrage.</p>
+          <p class="manifestoStrong">It’s not safe for power.</p>
 
-        <div class="card tile">
-          <p class="manifesto">
-            Left, right, flag, pulpit, boardroom.
+          <p>
+            This is gonzo news and reporting from the cracks in the empire. Real headlines. Real consequences. No corporate leash.
+            No party script. Just a boots-on-the-ground mind ripping into geopolitics, media propaganda, war culture, religion,
+            and the slow normalization of bullshit.
+          </p>
+
+          <p>
+            I don’t pretend to be neutral when people are dying, lying, or getting erased. I read the news so you don’t have to swallow it raw.
+            I connect dots they’d rather keep scattered. I call out hypocrisy wherever it hides. Left, right, flag, pulpit, boardroom.
             If it deserves sunlight, it gets dragged into it.
           </p>
 
-          <p class="manifesto manifestoMuted" style="margin-top:14px;">
-            If you’re tired of sanitized narratives, manufactured consent,
-            and being told to shut up and pick a side,
-            <strong>welcome to the mutiny.</strong>
+          <p>
+            If you’re tired of sanitized narratives, manufactured consent, and being told to shut up and pick a side,
+            <span class="manifestoAccent">welcome to the mutiny.</span>
           </p>
 
-          <p class="manifesto manifestoBig">
-            No gods.<br/>
-            No masters.<br/>
+          <p class="manifestoStrong">
+            No gods.<br />
+            No masters.<br />
             Just truth, teeth, and a microphone.
           </p>
 
-          <p class="manifesto manifestoGold">
-            Subscribe. Stay dangerous. Think for yourself.
-          </p>
-        </div>
-      </section>
-
-      <section id="episodes">
-        <h2 class="sectionTitle">Latest Episodes</h2>
-        <p class="sectionLead">
-          Replace these with your real episode titles + links (or hook up to your host’s API later).
-        </p>
-
-        <div class="episode">
-          <div>
-            <h3>Episode 001 — Title Here</h3>
-            <p>Short description. One sentence. Make it punchy.</p>
-          </div>
-          <a class="play" href="#">Play</a>
-        </div>
-
-        <div class="episode">
-          <div>
-            <h3>Episode 002 — Title Here</h3>
-            <p>Short description. One sentence. Make it punchy.</p>
-          </div>
-          <a class="play" href="#">Play</a>
-        </div>
-
-        <div class="episode">
-          <div>
-            <h3>Episode 003 — Title Here</h3>
-            <p>Short description. One sentence. Make it punchy.</p>
-          </div>
-          <a class="play" href="#">Play</a>
+          <p class="manifestoStrong">Subscribe. Stay dangerous. Think for yourself.</p>
         </div>
       </section>
 
       <section id="subscribe">
         <h2 class="sectionTitle">Subscribe</h2>
-        <p class="sectionLead">Pick your poison. (Swap these links for the real ones.)</p>
+        <p class="sectionLead">
+          Drop your email and get notified when the first episode lands. No spam. No nonsense.
+        </p>
 
-        <div class="badges">
-          <a class="badge" href="#">Spotify</a>
-          <a class="badge" href="#">Apple Podcasts</a>
-          <a class="badge" href="#">YouTube</a>
-          <a class="badge" href="#">RSS</a>
-        </div>
-
-        <div class="card tile" style="margin-top:16px;">
-          <h3>Never miss an episode</h3>
-          <p class="sectionLead">
-            Drop your email. No spam. No nonsense. Just updates when the next report lands.
-          </p>
-
+        <!-- Replace action= with your provider later (Buttondown/Mailchimp/ConvertKit/etc.) -->
+        <div class="card">
           <form action="#" method="post">
             <input type="email" name="email" placeholder="you@domain.com" required />
             <button class="submit" type="submit">Subscribe</button>
@@ -516,25 +370,16 @@
       <section id="contact">
         <h2 class="sectionTitle">Contact</h2>
         <p class="sectionLead">
-          For bookings, press, or tips:
-          <a class="contactMail" href="mailto:contact@mutinyreport.com">contact@mutinyreport.com</a>
+          Tips, press, bookings:
+          <a href="mailto:contact@mutinyreport.com">contact@mutinyreport.com</a>
         </p>
 
-        <div class="grid2">
-          <div class="card tile">
-            <h3>Social</h3>
-            <p class="sectionLead">
-              <a href="#">YouTube</a><br/>
-              <a href="#">X / Twitter</a><br/>
-              <a href="#">Instagram</a>
-            </p>
-          </div>
-          <div class="card tile">
-            <h3>Support</h3>
-            <p class="sectionLead">
-              Want to fund the work? Add a link to Patreon, Ko-fi, or a sponsor deck.
-            </p>
-          </div>
+        <div class="card">
+          <p class="sectionLead">
+            <a href="#">YouTube</a><br />
+            <a href="#">X / Twitter</a><br />
+            <a href="#">Instagram</a>
+          </p>
         </div>
       </section>
 
@@ -543,6 +388,7 @@
           © <span id="y"></span> MutinyReport.com — The Mutiny Report with Fletcher Christian.
         </div>
       </footer>
+
     </div>
   </main>
 
