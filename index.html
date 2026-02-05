@@ -7,12 +7,16 @@
   <meta name="description" content="The Mutiny Report with Fletcher Christian — gonzo news from the cracks in the empire. Truth, teeth, and a microphone." />
   <title>The Mutiny Report with Fletcher Christian</title>
 
+  <!-- FAVICON -->
+  <link rel="icon" href="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png" type="image/png" />
+  <link rel="apple-touch-icon" href="https://bafybeiepo6imnnollb3p54idu2yse3qpalyq5x5de7nw4ipnbh3a5ytsc4.ipfs.dweb.link?filename=The%20mutiny%20report.png" />
+
   <!-- Open Graph / Social Share -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="The Mutiny Report with Fletcher Christian">
   <meta property="og:description" content="Not polite news. Not safe for power. Gonzo reporting from the cracks in the empire.">
   <meta property="og:url" content="https://mutinyreport.com">
-  <meta property="og:image" content="https://bafybeigaxrkzr7cnnoc33dljymjclvomh7ey3jyyltfggavs234yg7yjbi.ipfs.dweb.link?filename=mutinyreportlogo.gif">
+  <meta property="og:image" content="https://bafybeibirtl2o5efmbfc5yogebvv2aqn2abajw4u4uv6fswpznuohmidgm.ipfs.dweb.link?filename=mutiny-logo-transparent-v2.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -20,21 +24,17 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Mutiny Report with Fletcher Christian">
   <meta name="twitter:description" content="No gods. No masters. Just truth, teeth, and a microphone.">
-  <meta name="twitter:image" content="https://bafybeigaxrkzr7cnnoc33dljymjclvomh7ey3jyyltfggavs234yg7yjbi.ipfs.dweb.link?filename=mutinyreportlogo.gif">
+  <meta name="twitter:image" content="https://bafybeibirtl2o5efmbfc5yogebvv2aqn2abajw4u4uv6fswpznuohmidgm.ipfs.dweb.link?filename=mutiny-logo-transparent-v2.png">
 
   <style>
     :root{
       --bg:#070709;
-      --panel: rgba(255,255,255,.04);
-      --panel2: rgba(0,0,0,.35);
       --text:#f3f4f6;
       --muted:#b8bcc6;
       --line:rgba(255,255,255,.10);
-      --shadow: 0 20px 60px rgba(0,0,0,.65);
       --radius: 18px;
       --max: 1020px;
 
-      /* restrained accent (mutiny red) */
       --accent:#ff2d55;
       --accentSoft: rgba(255,45,85,.16);
       --accentLine: rgba(255,45,85,.35);
@@ -49,11 +49,12 @@
       line-height:1.6;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
+      overflow-x:hidden;
 
       background:
         radial-gradient(900px 500px at 20% -10%, rgba(255,255,255,.06), transparent 60%),
-        radial-gradient(900px 500px at 90% 0%, rgba(255,45,85,.10), transparent 55%),
-        radial-gradient(800px 420px at 10% 90%, rgba(255,45,85,.08), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(255,45,85,.12), transparent 55%),
+        radial-gradient(800px 420px at 10% 90%, rgba(255,45,85,.10), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.03), transparent 24%),
         var(--bg);
     }
@@ -63,6 +64,26 @@
       outline: 2px solid rgba(255,255,255,.55);
       outline-offset: 3px;
       border-radius: 10px;
+    }
+
+    /* subtle film-grain overlay */
+    .noise{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .05;
+      mix-blend-mode: overlay;
+      background-image:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.55), transparent 35%),
+        radial-gradient(circle at 70% 80%, rgba(255,45,85,.55), transparent 40%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.10), rgba(255,255,255,.10) 1px, transparent 1px, transparent 3px);
+      filter: blur(.25px);
+      animation: drift 9s ease-in-out infinite;
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0) scale(1); }
+      50%{ transform: translate3d(-1.4%,1%,0) scale(1.01); }
+      100%{ transform: translate3d(0,0,0) scale(1); }
     }
 
     .wrap{
@@ -77,10 +98,31 @@
 
     .frame{
       width: min(var(--max), 100%);
-      border-radius: calc(var(--radius) + 8px);
+      border-radius: calc(var(--radius) + 12px);
       padding: 10px;
-      background: linear-gradient(180deg, rgba(255,45,85,.18), rgba(255,255,255,.05));
-      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+      background: linear-gradient(180deg, rgba(255,45,85,.22), rgba(255,255,255,.05));
+      box-shadow: 0 36px 130px rgba(0,0,0,.76);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .frame::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(900px 240px at 20% 0%, rgba(255,255,255,.14), transparent 55%),
+        radial-gradient(820px 260px at 80% 10%, rgba(255,45,85,.18), transparent 60%),
+        linear-gradient(90deg, transparent, rgba(255,45,85,.10), transparent);
+      opacity:.70;
+      transform: translateX(-18%);
+      animation: sheen 10s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes sheen{
+      0%{ transform: translateX(-18%); opacity:.55; }
+      50%{ transform: translateX(18%); opacity:.85; }
+      100%{ transform: translateX(-18%); opacity:.55; }
     }
 
     .card{
@@ -89,6 +131,9 @@
       border: 1px solid rgba(255,255,255,.10);
       overflow:hidden;
       position:relative;
+      box-shadow: 0 20px 70px rgba(0,0,0,.58);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .card::before{
@@ -98,37 +143,52 @@
       pointer-events:none;
       background:
         radial-gradient(620px 220px at 30% 0%, rgba(255,255,255,.10), transparent 60%),
-        radial-gradient(520px 240px at 85% 10%, rgba(255,45,85,.14), transparent 60%);
+        radial-gradient(520px 240px at 85% 10%, rgba(255,45,85,.16), transparent 60%);
       opacity:.95;
     }
 
+    /* HEADER: WHITE BLOCK so the logo looks “part of the whole thing” */
     header{
       position:relative;
-      padding: 20px 18px 14px;
-      border-bottom: 1px solid var(--line);
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(0,0,0,.10);
       display:flex;
       flex-direction:column;
       align-items:center;
       gap: 12px;
-      overflow: visible; /* prevents any weird clipping */
+
+      background: rgba(255,255,255,.94);
+      color: #0d0d10;
     }
 
-    /* MOBILE-SAFE LOGO SLOT (centered, not clipped) */
+    header::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-1px;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,45,85,.55), transparent);
+      opacity:.8;
+      pointer-events:none;
+    }
+
     .logo-slot{
       width:100%;
       display:flex;
       justify-content:center;
       align-items:center;
-      overflow: visible;
     }
 
-    .logo-gif{
-      width: min(420px, 92vw);
+    /* MP4 logo */
+    .logo-video{
+      width: min(520px, 94vw);
       max-width: 100%;
       height: auto;
       display:block;
-      object-fit: contain;
-      filter: drop-shadow(0 14px 24px rgba(0,0,0,.55));
+      border-radius: 16px;
+      background: transparent;
+      box-shadow:
+        0 10px 28px rgba(0,0,0,.18),
+        0 0 0 1px rgba(0,0,0,.06);
     }
 
     .actions{
@@ -141,15 +201,15 @@
     .btn{
       width:100%;
       justify-content:center;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.35);
-      color: var(--text);
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.72);
+      color: #0d0d10;
       padding: 12px 14px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 950;
       letter-spacing: .14em;
       text-transform: uppercase;
-      transition: transform .10s ease, background .18s ease, border-color .18s ease;
+      transition: transform .10s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
       display:inline-flex;
       align-items:center;
       user-select:none;
@@ -161,23 +221,24 @@
       content:"";
       position:absolute;
       inset:-1px;
-      background: linear-gradient(90deg, transparent, rgba(255,45,85,.18), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,45,85,.22), transparent);
       transform: translateX(-120%);
-      transition: transform .5s ease;
+      transition: transform .55s ease;
       pointer-events:none;
     }
 
     .btn:hover{
       transform: translateY(-1px);
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
+      border-color: rgba(0,0,0,.22);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 12px 26px rgba(0,0,0,.16);
     }
     .btn:hover::after{ transform: translateX(120%); }
     .btn:active{ transform: translateY(0px); }
 
     .btn.primary{
-      border-color: rgba(255,45,85,.65);
-      background: rgba(255,45,85,.14);
+      border-color: rgba(255,45,85,.55);
+      background: rgba(255,45,85,.10);
     }
 
     main{
@@ -186,12 +247,13 @@
       display:flex;
       flex-direction:column;
       gap: 16px;
+      color: var(--text);
     }
 
     .hero{
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(0,0,0,.28);
+      background: rgba(0,0,0,.30);
       padding: 16px;
       position:relative;
       overflow:hidden;
@@ -202,20 +264,20 @@
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(600px 240px at 10% 0%, rgba(255,45,85,.16), transparent 60%);
+      background: radial-gradient(700px 260px at 10% 0%, rgba(255,45,85,.18), transparent 60%);
       opacity:.9;
       pointer-events:none;
     }
 
     .title{
-      margin: 0 0 8px;
-      font-size: clamp(24px, 6.2vw, 44px);
-      line-height:1.12;
-      letter-spacing: -0.7px;
+      margin: 0 0 10px;
+      font-size: clamp(26px, 6.4vw, 46px);
+      line-height:1.10;
+      letter-spacing: -0.9px;
     }
 
     .subtitle{
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       color: var(--muted);
       font-size: 15px;
       max-width: 70ch;
@@ -223,8 +285,8 @@
 
     .tagline{
       margin: 0;
-      font-weight: 900;
-      letter-spacing: .08em;
+      font-weight: 950;
+      letter-spacing: .09em;
       text-transform: uppercase;
       font-size: 13px;
       color: rgba(255,255,255,.92);
@@ -243,25 +305,75 @@
       flex: 0 0 auto;
     }
 
-    @keyframes sweep {
-      0%{ transform: translateX(-120%); opacity: 0; }
-      20%{ opacity: 1; }
-      100%{ transform: translateX(140%); opacity: 0; }
+    /* “Sophisticated + unruly” bullets rotator */
+    .bullet-rotator{
+      margin-top: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.24);
+      border-radius: 14px;
+      padding: 12px 14px;
+      overflow:hidden;
+      position: relative;
     }
 
-    .tagline .glitch{
-      position:relative;
-      display:inline-block;
-    }
-    .tagline .glitch::after{
+    .bullet-rotator::before{
       content:"";
       position:absolute;
-      top:-6px; bottom:-6px;
-      left:-16px; right:-16px;
-      background: linear-gradient(90deg, transparent, rgba(255,45,85,.18), transparent);
-      transform: translateX(-120%);
-      animation: sweep 1.1s ease .35s 1;
+      inset:0;
+      background: radial-gradient(700px 240px at 20% 0%, rgba(255,45,85,.14), transparent 60%);
+      opacity:.9;
       pointer-events:none;
+    }
+
+    .bullets{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 44px;
+    }
+
+    .bullets li{
+      position:absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .45s ease, transform .45s ease, color .45s ease, filter .45s ease;
+      color: rgba(255,255,255,.84);
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      font-size: 12px;
+      filter: saturate(1);
+      will-change: opacity, transform;
+      padding-right: 6px;
+    }
+
+    .bullets li .b{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(255,45,85,.10);
+      flex: 0 0 auto;
+      margin-top: 3px;
+    }
+
+    .bullets li.on{
+      opacity: 1;
+      transform: translateY(0);
+      color: rgba(255,255,255,.96);
+      filter: saturate(1.2);
+    }
+
+    .bullets li.hot{
+      color: rgba(255,45,85,.95);
+      text-shadow: 0 0 24px rgba(255,45,85,.22);
     }
 
     .copy{
@@ -269,8 +381,50 @@
       border-radius: var(--radius);
       background: rgba(255,255,255,.03);
       padding: 16px;
-      white-space: pre-line;
       font-size: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* keyword highlight + pulse */
+    .kw{
+      position: relative;
+      display:inline-block;
+      padding: 0 .18em;
+      border-radius: 9px;
+      font-weight: 950;
+      color: rgba(255,255,255,.96);
+      background: rgba(255,45,85,.10);
+      border: 1px solid rgba(255,45,85,.22);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
+      transform: translateZ(0);
+    }
+    .kw.pulse{
+      animation: kwPulse 1.05s ease-in-out 1;
+    }
+    .kw::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius: 9px;
+      background: linear-gradient(90deg, transparent, rgba(255,45,85,.35), transparent);
+      transform: translateX(-120%);
+      opacity: 0;
+      pointer-events:none;
+    }
+    .kw.pulse::after{
+      animation: kwSweep 1.05s ease-in-out 1;
+    }
+
+    @keyframes kwPulse{
+      0%{ box-shadow: 0 0 0 0 rgba(255,45,85,.00); }
+      35%{ box-shadow: 0 0 0 10px rgba(255,45,85,.12); }
+      100%{ box-shadow: 0 0 0 0 rgba(255,45,85,.00); }
+    }
+    @keyframes kwSweep{
+      0%{ transform: translateX(-120%); opacity: 0; }
+      20%{ opacity: 1; }
+      100%{ transform: translateX(120%); opacity: 0; }
     }
 
     .grid{
@@ -284,6 +438,7 @@
       border-radius: var(--radius);
       background: rgba(0,0,0,.26);
       padding: 16px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.40);
     }
 
     .box h2{
@@ -302,7 +457,7 @@
       width: 10px;
       height: 10px;
       border-radius: 3px;
-      background: rgba(255,45,85,.75);
+      background: rgba(255,45,85,.78);
       box-shadow: 0 0 0 6px rgba(255,45,85,.12);
     }
 
@@ -321,9 +476,56 @@
       padding: 10px 12px;
       background: rgba(255,255,255,.04);
       color: var(--text);
-      font-weight: 750;
+      font-weight: 800;
       font-size: 14px;
       white-space: nowrap;
+    }
+
+    /* YouTube playlist embed */
+    .yt-embed{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.26);
+      overflow:hidden;
+      padding: 16px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.40);
+    }
+
+    .yt-embed h2{
+      margin:0 0 10px;
+      font-size: 13px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: var(--muted);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .yt-embed h2::before{
+      content:"";
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: rgba(255,45,85,.78);
+      box-shadow: 0 0 0 6px rgba(255,45,85,.12);
+    }
+
+    .yt-embed .ratio{
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: calc(var(--radius) - 6px);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+
+    .yt-embed iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
     }
 
     footer{
@@ -344,16 +546,14 @@
       .wrap{ padding: 34px; }
 
       header{
-        padding: 26px 34px;
+        padding: 22px 34px 16px;
         flex-direction:row;
         align-items:center;
         justify-content:space-between;
         gap: 18px;
       }
 
-      .logo-slot{
-        width:auto;
-      }
+      .logo-slot{ width:auto; }
 
       .actions{
         width:auto;
@@ -379,27 +579,43 @@
         gap: 14px;
       }
 
-      .grid{
-        gap: 14px;
+      .grid{ gap: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .noise,
+      .frame::before{
+        animation: none !important;
+      }
+      .bullets li{
+        transition: none !important;
+      }
+      .kw.pulse,
+      .kw.pulse::after{
+        animation: none !important;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="noise" aria-hidden="true"></div>
+
   <div class="wrap">
     <div class="frame">
       <div class="card">
 
         <header>
           <div class="logo-slot" aria-label="Mutiny Report logo">
-            <img
-              class="logo-gif"
-              src="https://bafybeigaxrkzr7cnnoc33dljymjclvomh7ey3jyyltfggavs234yg7yjbi.ipfs.dweb.link?filename=mutinyreportlogo.gif"
-              alt="The Mutiny Report animated logo"
-              loading="eager"
-              decoding="async"
-            />
+            <video
+              class="logo-video"
+              src="https://bafybeigpgpxmjqrejctw32zvke3a7m2xkqbolbpwn3jxjt5zj4vt7qlb2q.ipfs.dweb.link?filename=MutinyAnimatedLogo.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata">
+            </video>
           </div>
 
           <nav class="actions" aria-label="Primary actions">
@@ -410,18 +626,30 @@
 
         <main>
           <div class="left">
-            <section class="hero">
+            <section class="hero" aria-label="Hero">
               <h1 class="title">The Mutiny Report with Fletcher Christian</h1>
               <p class="subtitle">
                 Gonzo news and reporting from the cracks in the empire. Real headlines. Real consequences. No corporate leash.
               </p>
+
               <p class="tagline">
                 <span class="dot" aria-hidden="true"></span>
-                <span class="glitch">No gods. No masters. Just truth, teeth, and a microphone.</span>
+                <span>No gods. No masters. Just truth, teeth, and a microphone.</span>
               </p>
+
+              <!-- Rotating bullets instead of ticker -->
+              <div class="bullet-rotator" aria-label="Key points">
+                <ul class="bullets" id="bullets">
+                  <li class="on"><span class="b"></span><span>Short, sharp dispatches — zero filler.</span></li>
+                  <li><span class="b"></span><span>Geopolitics, propaganda, war culture, religion & power.</span></li>
+                  <li><span class="b"></span><span>When the world lies, this drags the lie into daylight.</span></li>
+                  <li><span class="b"></span><span>No party script. No corporate leash. No polite tone.</span></li>
+                  <li><span class="b"></span><span>Real headlines. Real consequences. Think for yourself.</span></li>
+                </ul>
+              </div>
             </section>
 
-            <section class="copy" aria-label="Description">
+            <section class="copy" aria-label="Description" id="copy">
 The Mutiny Report with Fletcher Christian is not polite news.
 It’s not sponsored outrage.
 It’s not safe for power.
@@ -441,6 +669,22 @@ Subscribe. Stay dangerous. Think for yourself.
           </div>
 
           <div class="grid">
+            <!-- FULL EPISODES / PODCAST PLAYLIST -->
+            <section class="yt-embed" aria-label="Full episodes playlist">
+              <h2>Full episodes</h2>
+              <div class="ratio">
+                <!-- Swap the list=... value if your podcast playlist has a different ID -->
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/videoseries?list=PLDH-5IEnNhBSeRSXVYLH9025xJrmjj3HE"
+                  title="The Mutiny Report — Full Episodes"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </section>
+
             <section class="box" aria-label="What to expect">
               <h2>What to expect</h2>
               <p>
@@ -476,7 +720,87 @@ Subscribe. Stay dangerous. Think for yourself.
   </div>
 
   <script>
+    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Bullet rotator: fade/slide in-out + occasional “hot” accent
+    (function(){
+      const items = Array.from(document.querySelectorAll("#bullets li"));
+      if (!items.length) return;
+
+      let i = 0;
+      const show = (idx) => {
+        items.forEach((el, j) => {
+          el.classList.toggle("on", j === idx);
+          el.classList.remove("hot");
+        });
+
+        // randomly make it “hot” sometimes (unruly)
+        const el = items[idx];
+        if (Math.random() < 0.45) el.classList.add("hot");
+      };
+
+      show(0);
+      setInterval(() => {
+        i = (i + 1) % items.length;
+        show(i);
+      }, 2200);
+    })();
+
+    // Keyword highlighting + pulsing flashes in the big copy block
+    (function(){
+      const copy = document.getElementById("copy");
+      if (!copy) return;
+
+      const phrases = [
+        "not polite news",
+        "not safe for power",
+        "gonzo",
+        "truth",
+        "teeth",
+        "microphone",
+        "real headlines",
+        "real consequences",
+        "no corporate leash",
+        "manufactured consent",
+        "war culture",
+        "religion",
+        "power",
+        "hypocrisy",
+        "the mutiny",
+        "propaganda",
+        "geopolitics"
+      ];
+
+      const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const sorted = phrases.slice().sort((a,b)=>b.length-a.length).map(esc);
+      const re = new RegExp("\\b(" + sorted.join("|") + ")\\b", "gi");
+
+      const original = copy.textContent;
+      copy.innerHTML = original.replace(re, (m) => `<span class="kw">${m}</span>`);
+
+      const kws = Array.from(copy.querySelectorAll(".kw"));
+      if (!kws.length) return;
+
+      function pulseSome(){
+        // pulse 2-4 random words each cycle
+        const count = Math.min(4, Math.max(2, Math.floor(Math.random()*3)+2));
+        const picked = new Set();
+        while (picked.size < count && picked.size < kws.length){
+          picked.add(kws[Math.floor(Math.random()*kws.length)]);
+        }
+        picked.forEach(el => {
+          el.classList.remove("pulse");
+          void el.offsetWidth;
+          el.classList.add("pulse");
+        });
+      }
+
+      setTimeout(() => {
+        pulseSome();
+        setInterval(pulseSome, 2600);
+      }, 1200);
+    })();
   </script>
 </body>
 </html>
