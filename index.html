@@ -66,7 +66,6 @@
       border-radius: 10px;
     }
 
-    /* subtle film-grain overlay */
     .noise{
       position: fixed;
       inset: 0;
@@ -80,6 +79,7 @@
       filter: blur(.25px);
       animation: drift 9s ease-in-out infinite;
     }
+
     @keyframes drift{
       0%{ transform: translate3d(0,0,0) scale(1); }
       50%{ transform: translate3d(-1.4%,1%,0) scale(1.01); }
@@ -119,6 +119,7 @@
       animation: sheen 10s ease-in-out infinite;
       pointer-events:none;
     }
+
     @keyframes sheen{
       0%{ transform: translateX(-18%); opacity:.55; }
       50%{ transform: translateX(18%); opacity:.85; }
@@ -147,7 +148,6 @@
       opacity:.95;
     }
 
-    /* HEADER: WHITE BLOCK so the logo looks “part of the whole thing” */
     header{
       position:relative;
       padding: 18px 18px 14px;
@@ -156,7 +156,6 @@
       flex-direction:column;
       align-items:center;
       gap: 12px;
-
       background: rgba(255,255,255,.94);
       color: #0d0d10;
     }
@@ -178,7 +177,6 @@
       align-items:center;
     }
 
-    /* MP4 logo */
     .logo-video{
       width: min(520px, 94vw);
       max-width: 100%;
@@ -233,12 +231,18 @@
       background: rgba(255,255,255,.92);
       box-shadow: 0 12px 26px rgba(0,0,0,.16);
     }
+
     .btn:hover::after{ transform: translateX(120%); }
     .btn:active{ transform: translateY(0px); }
 
     .btn.primary{
       border-color: rgba(255,45,85,.55);
       background: rgba(255,45,85,.10);
+    }
+
+    .btn.signal{
+      border-color: rgba(255,45,85,.38);
+      background: linear-gradient(180deg, rgba(255,45,85,.12), rgba(255,255,255,.58));
     }
 
     main{
@@ -305,7 +309,6 @@
       flex: 0 0 auto;
     }
 
-    /* “Sophisticated + unruly” bullets rotator */
     .bullet-rotator{
       margin-top: 14px;
       border: 1px solid rgba(255,255,255,.12);
@@ -384,9 +387,9 @@
       font-size: 16px;
       position:relative;
       overflow:hidden;
+      white-space: pre-line;
     }
 
-    /* keyword highlight + pulse */
     .kw{
       position: relative;
       display:inline-block;
@@ -399,9 +402,11 @@
       box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
       transform: translateZ(0);
     }
+
     .kw.pulse{
       animation: kwPulse 1.05s ease-in-out 1;
     }
+
     .kw::after{
       content:"";
       position:absolute;
@@ -412,6 +417,7 @@
       opacity: 0;
       pointer-events:none;
     }
+
     .kw.pulse::after{
       animation: kwSweep 1.05s ease-in-out 1;
     }
@@ -421,6 +427,7 @@
       35%{ box-shadow: 0 0 0 10px rgba(255,45,85,.12); }
       100%{ box-shadow: 0 0 0 0 rgba(255,45,85,.00); }
     }
+
     @keyframes kwSweep{
       0%{ transform: translateX(-120%); opacity: 0; }
       20%{ opacity: 1; }
@@ -439,6 +446,8 @@
       background: rgba(0,0,0,.26);
       padding: 16px;
       box-shadow: 0 18px 70px rgba(0,0,0,.40);
+      position: relative;
+      overflow: hidden;
     }
 
     .box h2{
@@ -481,7 +490,6 @@
       white-space: nowrap;
     }
 
-    /* YouTube playlist embed */
     .yt-embed{
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -501,6 +509,7 @@
       align-items:center;
       gap:10px;
     }
+
     .yt-embed h2::before{
       content:"";
       width: 10px;
@@ -528,6 +537,84 @@
       border:0;
     }
 
+    .project-feature{
+      border: 1px solid rgba(255,45,85,.22);
+      background:
+        radial-gradient(540px 200px at 10% 0%, rgba(255,45,85,.16), transparent 60%),
+        rgba(0,0,0,.34);
+    }
+
+    .project-feature::after{
+      content:"";
+      position:absolute;
+      inset:auto -20% -35% auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255,45,85,.18), transparent 65%);
+      pointer-events:none;
+    }
+
+    .project-kicker{
+      margin: 0 0 8px;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+      font-weight: 900;
+    }
+
+    .project-title{
+      margin: 0 0 10px;
+      font-size: clamp(24px, 4vw, 32px);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+    }
+
+    .project-title span{
+      color: rgba(255,45,85,.95);
+      text-shadow: 0 0 24px rgba(255,45,85,.18);
+    }
+
+    .project-copy{
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    .project-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+
+    .mini-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .mini-btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,45,85,.28);
+    }
+
+    .mini-btn.primary{
+      background: rgba(255,45,85,.12);
+      border-color: rgba(255,45,85,.40);
+    }
+
     footer{
       position:relative;
       padding: 14px 18px;
@@ -540,7 +627,17 @@
       font-size: 13px;
     }
 
-    .muted-link{ color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+    .footer-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .muted-link{
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
 
     @media (min-width: 900px){
       .wrap{ padding: 34px; }
@@ -558,6 +655,8 @@
       .actions{
         width:auto;
         flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:flex-end;
       }
 
       .btn{
@@ -587,9 +686,11 @@
       .frame::before{
         animation: none !important;
       }
+
       .bullets li{
         transition: none !important;
       }
+
       .kw.pulse,
       .kw.pulse::after{
         animation: none !important;
@@ -620,6 +721,7 @@
 
           <nav class="actions" aria-label="Primary actions">
             <a class="btn primary" href="https://www.youtube.com/@TheMutinyReport" target="_blank" rel="noopener">Subscribe</a>
+            <a class="btn signal" href="https://jettai.pro" target="_blank" rel="noopener">Visit JETTAI</a>
             <a class="btn" href="mailto:contact@mutinyreport.com">Contact Us</a>
           </nav>
         </header>
@@ -637,12 +739,11 @@
                 <span>No gods. No masters. Just truth, teeth, and a microphone.</span>
               </p>
 
-              <!-- Rotating bullets instead of ticker -->
               <div class="bullet-rotator" aria-label="Key points">
                 <ul class="bullets" id="bullets">
                   <li class="on"><span class="b"></span><span>Short, sharp dispatches — zero filler.</span></li>
                   <li><span class="b"></span><span>Geopolitics, propaganda, war culture, religion & power.</span></li>
-                  <li><span class="b"></span><span>When the world lies, this drags the lie into daylight.</span></li>
+                  <li><span class="b"></span><span>JETTAI tracks the signal. Mutiny brings the teeth.</span></li>
                   <li><span class="b"></span><span>No party script. No corporate leash. No polite tone.</span></li>
                   <li><span class="b"></span><span>Real headlines. Real consequences. Think for yourself.</span></li>
                 </ul>
@@ -658,22 +759,20 @@ This is gonzo news and reporting from the cracks in the empire. Real headlines. 
 
 I don’t pretend to be neutral when people are dying, lying, or getting erased. I read the news so you don’t have to swallow it raw. I connect dots they’d rather keep scattered. I call out hypocrisy wherever it hides. Left, right, flag, pulpit, boardroom. If it deserves sunlight, it gets dragged into it.
 
+And when you want the broader signal map behind the chaos, there’s JETTAI — the sister project built to track patterns, spot pressure points, and see the shape of the storm before the sirens start screaming.
+
 If you’re tired of sanitized narratives, manufactured consent, and being told to shut up and pick a side, welcome to the mutiny.
 
 No gods.
 No masters.
 Just truth, teeth, and a microphone.
-
-Subscribe. Stay dangerous. Think for yourself.
             </section>
           </div>
 
           <div class="grid">
-            <!-- FULL EPISODES / PODCAST PLAYLIST -->
             <section class="yt-embed" aria-label="Full episodes playlist">
               <h2>Full episodes</h2>
               <div class="ratio">
-                <!-- Swap the list=... value if your podcast playlist has a different ID -->
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/videoseries?list=PLDH-5IEnNhBSeRSXVYLH9025xJrmjj3HE"
                   title="The Mutiny Report — Full Episodes"
@@ -682,6 +781,26 @@ Subscribe. Stay dangerous. Think for yourself.
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen>
                 </iframe>
+              </div>
+            </section>
+
+            <section class="box project-feature" aria-label="Featured project JETTAI">
+              <p class="project-kicker">Featured signal project</p>
+              <h2 class="project-title"><span>JETTAI</span></h2>
+              <p class="project-copy">
+                News signals. Pattern recognition. Pressure points. The broader intelligence layer behind the noise.
+                Where Mutiny Report brings the voice, JETTAI helps map the storm.
+              </p>
+
+              <div class="chips" aria-label="JETTAI topics">
+                <div class="chip">Signal before the sirens</div>
+                <div class="chip">Pattern recognition</div>
+                <div class="chip">News intelligence</div>
+                <div class="chip">Accountability</div>
+              </div>
+
+              <div class="project-actions">
+                <a class="mini-btn primary" href="https://jettai.pro" target="_blank" rel="noopener">Open JETTAI</a>
               </div>
             </section>
 
@@ -710,8 +829,9 @@ Subscribe. Stay dangerous. Think for yourself.
 
         <footer>
           <div>© <span id="year"></span> The Mutiny Report</div>
-          <div>
+          <div class="footer-links">
             <a class="muted-link" href="https://www.youtube.com/@TheMutinyReport" target="_blank" rel="noopener">YouTube</a>
+            <a class="muted-link" href="https://jettai.pro" target="_blank" rel="noopener">JETTAI</a>
           </div>
         </footer>
 
@@ -720,10 +840,8 @@ Subscribe. Stay dangerous. Think for yourself.
   </div>
 
   <script>
-    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Bullet rotator: fade/slide in-out + occasional “hot” accent
     (function(){
       const items = Array.from(document.querySelectorAll("#bullets li"));
       if (!items.length) return;
@@ -735,7 +853,6 @@ Subscribe. Stay dangerous. Think for yourself.
           el.classList.remove("hot");
         });
 
-        // randomly make it “hot” sometimes (unruly)
         const el = items[idx];
         if (Math.random() < 0.45) el.classList.add("hot");
       };
@@ -747,7 +864,6 @@ Subscribe. Stay dangerous. Think for yourself.
       }, 2200);
     })();
 
-    // Keyword highlighting + pulsing flashes in the big copy block
     (function(){
       const copy = document.getElementById("copy");
       if (!copy) return;
@@ -769,7 +885,11 @@ Subscribe. Stay dangerous. Think for yourself.
         "hypocrisy",
         "the mutiny",
         "propaganda",
-        "geopolitics"
+        "geopolitics",
+        "JETTAI",
+        "signal",
+        "pattern recognition",
+        "storm"
       ];
 
       const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -783,7 +903,6 @@ Subscribe. Stay dangerous. Think for yourself.
       if (!kws.length) return;
 
       function pulseSome(){
-        // pulse 2-4 random words each cycle
         const count = Math.min(4, Math.max(2, Math.floor(Math.random()*3)+2));
         const picked = new Set();
         while (picked.size < count && picked.size < kws.length){
